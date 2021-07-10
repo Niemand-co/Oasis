@@ -1,0 +1,3 @@
+[submodule "Oasis/vendor/spdlog"]
+	path = Oasis/vendor/spdlog
+	url = https://github.com/gabime/spdlog
