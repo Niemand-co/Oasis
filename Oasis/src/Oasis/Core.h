@@ -9,3 +9,5 @@
 #else
 	#error OASIS ONLY SUPPORT WINDOWS!
 #endif // OASIS_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
