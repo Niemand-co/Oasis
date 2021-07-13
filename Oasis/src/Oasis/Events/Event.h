@@ -1,9 +1,10 @@
 #pragma once
 
-#include "../Core.h"
+#include "Oasis/Core.h"
 
 #include <string>
 #include <functional>
+#include <ostream>
 
 namespace Oasis {
 
@@ -71,7 +72,7 @@ namespace Oasis {
 
 	};
 
-	inline std::ostream& operator<< (std::ostream os, const Event& event) {
+	inline std::ostream& operator<<(std::ostream& os, const Event& event){
 		return os << event.ToString();
 	}
 

@@ -4,6 +4,9 @@
     <Filter Include="Oasis">
       <UniqueIdentifier>{E4B7CB0D-50CC-F3BE-194E-971E8521F0EF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Oasis\Events">
+      <UniqueIdentifier>{481BAF80-347E-3E25-DD03-77DBC9450AA8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Oasis.h" />
@@ -16,13 +19,21 @@
     <ClInclude Include="src\Oasis\EntryPoint.h">
       <Filter>Oasis</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\Events\ApplicationEvent.h">
+      <Filter>Oasis\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Events\Event.h">
+      <Filter>Oasis\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Events\MouseEvent.h">
+      <Filter>Oasis\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Events\keyEvent.h">
+      <Filter>Oasis\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Oasis\Log.h">
       <Filter>Oasis</Filter>
     </ClInclude>
-    <ClInclude Include="src\Oasis\Events\Event.h" />
-    <ClInclude Include="src\Oasis\Events\keyEvent.h" />
-    <ClInclude Include="src\Oasis\Events\MouseEvent.h" />
-    <ClInclude Include="src\Oasis\Events\ApplicationEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Oasis\Application.cpp">

@@ -25,13 +25,14 @@ project "Oasis"
 	}
 
 	includedirs{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
 	filter "system:windows"
 		cppdialect "c++17"
 		staticruntime "On"
-		systemversion "10.0.17763.0"
+		systemversion "latest"
 
 		defines{
 			"OASIS_PLATFORM_WINDOWS",
@@ -79,7 +80,7 @@ project "SandBox"
 	filter "system:windows"
 		cppdialect "c++17"
 		staticruntime "On"
-		systemversion "10.0.17763.0"
+		systemversion "latest"
 
 		defines{
 			"OASIS_PLATFORM_WINDOWS"

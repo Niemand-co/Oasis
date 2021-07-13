@@ -1,5 +1,8 @@
 #include "Application.h"
 
+#include "Events/ApplicationEvent.h"
+#include "Log.h"
+
 namespace Oasis {
 	Application::Application(){
 	}
@@ -7,6 +10,10 @@ namespace Oasis {
 	}
 
 	void Application::Run() {
+
+		WindowResizeEvent e(1280, 720);
+		OASIS_TRACE(e);
+
 		while (true) {
 
 		}
