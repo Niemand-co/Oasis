@@ -1,3 +1,6 @@
 [submodule "Oasis/vendor/spdlog"]
 	path = Oasis/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Oasis/vendor/GLFW"]
+	path = Oasis/vendor/GLFW
+	url = https://github.com/TheCherno/glfw

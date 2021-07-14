@@ -11,6 +11,12 @@ startproject "SandBox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Inlcude directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Oasis/vendor/GLFW/include"
+
+include "Oasis/vendor/GLFW"
+
 project "Oasis"
 	location "Oasis"
 	kind "SharedLib"
@@ -26,7 +32,13 @@ project "Oasis"
 
 	includedirs{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

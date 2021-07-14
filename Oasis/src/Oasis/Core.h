@@ -10,4 +10,12 @@
 	#error OASIS ONLY SUPPORT WINDOWS!
 #endif // OASIS_PLATFORM_WINDOWS
 
+#ifdef OASIS_ENABLE_ASSERTS
+	#define OASIS_ASSERT(x, ...) {if(!(x) {OASIS_ERROR("Assertion Failed: {0}", __VA_ARGS__);__debugbreak();}}
+	#define OASIS_CORE_ASSERT (x, ...) {if(!(x)) {OASIS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__);__debugbreak();}}
+#else
+	#define OASIS_ASSERT(x, ...)
+	#define OASIS_CORE_ASSERT(x, ...)
+#endif
+
 #define BIT(x) (1 << x)

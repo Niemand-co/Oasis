@@ -7,6 +7,12 @@
     <Filter Include="Oasis\Events">
       <UniqueIdentifier>{481BAF80-347E-3E25-DD03-77DBC9450AA8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="paltform">
+      <UniqueIdentifier>{EA85AB07-D652-0613-FF6B-F4BAEB973BA1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="paltform\Windows">
+      <UniqueIdentifier>{247A2D29-1073-4C7B-39A5-310025FD2B87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Oasis.h" />
@@ -34,6 +40,12 @@
     <ClInclude Include="src\Oasis\Log.h">
       <Filter>Oasis</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\Window.h">
+      <Filter>Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\paltform\Windows\WindowsWindow.h">
+      <Filter>paltform\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Oasis\Application.cpp">
@@ -41,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="src\Oasis\Log.cpp">
       <Filter>Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\paltform\Windows\WindowsWindow.cpp">
+      <Filter>paltform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
