@@ -37,6 +37,12 @@
     <ClInclude Include="src\Oasis\Events\keyEvent.h">
       <Filter>Oasis\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\Layer.h">
+      <Filter>Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\LayerStack.h">
+      <Filter>Oasis</Filter>
+    </ClInclude>
     <ClInclude Include="src\Oasis\Log.h">
       <Filter>Oasis</Filter>
     </ClInclude>
@@ -49,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Oasis\Application.cpp">
+      <Filter>Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Layer.cpp">
+      <Filter>Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\LayerStack.cpp">
       <Filter>Oasis</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\Log.cpp">

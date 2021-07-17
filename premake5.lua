@@ -14,8 +14,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Inlcude directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Oasis/vendor/GLFW/include"
+IncludeDir["Glad"] = "Oasis/vendor/Glad/include"
 
 include "Oasis/vendor/GLFW"
+include "Oasis/vendor/Glad"
 
 project "Oasis"
 	location "Oasis"
@@ -33,11 +35,13 @@ project "Oasis"
 	includedirs{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -48,7 +52,8 @@ project "Oasis"
 
 		defines{
 			"OASIS_PLATFORM_WINDOWS",
-			"OASIS_BUILD_DLL"
+			"OASIS_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands{
@@ -57,14 +62,17 @@ project "Oasis"
 
 		filter "configurations:Debug"
 			defines "OASIS_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "OASIS_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "OASIS_DIST"
+			buildoptions "/MD"
 			optimize "On"
 
 project "SandBox"
@@ -100,12 +108,15 @@ project "SandBox"
 
 		filter "configurations:Debug"
 			defines "OASIS_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "OASIS_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "OASIS_DIST"
+			buildoptions "/MD"
 			optimize "On"
