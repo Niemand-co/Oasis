@@ -58,7 +58,7 @@ namespace Oasis {
 		template<typename T>
 		bool DispatchEvent(EventFunc<T> Func) {
 
-			if (m_Event.GetCategoryFlags() == T::GetStaticTypes()) {
+			if (m_Event.GetEventType() == T::GetStaticType()) {
 				m_Event.m_Handled = Func(*(T*)&m_Event);
 				return true;
 			}
