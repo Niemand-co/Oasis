@@ -21,8 +21,8 @@ class SandBox : public Oasis::Application {
 
 public:
 	SandBox() {
-		ExampleLayer* example = new ExampleLayer();
-		PushLayer(example);
+		PushLayer(new ExampleLayer());
+		PushOverlay(new Oasis::ImGuiLayer());
 	}
 
 	~SandBox() {

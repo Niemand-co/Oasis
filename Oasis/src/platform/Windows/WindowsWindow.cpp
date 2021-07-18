@@ -4,6 +4,7 @@
 #include "Oasis/Events/KeyEvent.h"
 #include "Oasis/Events/MouseEvent.h"
 
+
 namespace Oasis {
 
 	static bool m_GLFWInitialized = false;
@@ -88,6 +89,14 @@ namespace Oasis {
 				}
 
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int KeyCode) {
+
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypeEvent event(KeyCode);
+			data.EventCallback(event);
+
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int Button, int action, int mods) {

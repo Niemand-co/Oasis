@@ -23,6 +23,9 @@ namespace Oasis{
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		inline Window& GetWindow() { return *m_Window; }
+		inline static Application& Get() { return *s_Instance; }
+
 	private:
 
 		std::unique_ptr<Window> m_Window;
@@ -30,6 +33,8 @@ namespace Oasis{
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		LayerStack m_LayerStack;
+
+		static Application* s_Instance;
 
 	};
 

@@ -19,3 +19,5 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#define OASIS_BIND_EVENT_FUNC(FUNC) std::bind(&FUNC, this, std::placeholders::_1)

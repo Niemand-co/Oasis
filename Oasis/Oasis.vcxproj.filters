@@ -7,8 +7,14 @@
     <Filter Include="Oasis\Events">
       <UniqueIdentifier>{481BAF80-347E-3E25-DD03-77DBC9450AA8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Oasis\ImGui">
+      <UniqueIdentifier>{0E885FDD-7A3D-D8D2-0332-D2A96FE6CED6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="paltform">
       <UniqueIdentifier>{EA85AB07-D652-0613-FF6B-F4BAEB973BA1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="paltform\OpenGL">
+      <UniqueIdentifier>{DE236D63-4AAF-DA27-53C0-5D1CBFCA3628}</UniqueIdentifier>
     </Filter>
     <Filter Include="paltform\Windows">
       <UniqueIdentifier>{247A2D29-1073-4C7B-39A5-310025FD2B87}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Oasis\Events\keyEvent.h">
       <Filter>Oasis\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\ImGui\ImGuiLayer.h">
+      <Filter>Oasis\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Oasis\Layer.h">
       <Filter>Oasis</Filter>
     </ClInclude>
@@ -49,13 +58,19 @@
     <ClInclude Include="src\Oasis\Window.h">
       <Filter>Oasis</Filter>
     </ClInclude>
-    <ClInclude Include="src\paltform\Windows\WindowsWindow.h">
+    <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>paltform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\Windows\WindowsWindow.h">
       <Filter>paltform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Oasis\Application.cpp">
       <Filter>Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\ImGui\ImGuiLayer.cpp">
+      <Filter>Oasis\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\Layer.cpp">
       <Filter>Oasis</Filter>
@@ -66,7 +81,10 @@
     <ClCompile Include="src\Oasis\Log.cpp">
       <Filter>Oasis</Filter>
     </ClCompile>
-    <ClCompile Include="src\paltform\Windows\WindowsWindow.cpp">
+    <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>paltform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\Windows\WindowsWindow.cpp">
       <Filter>paltform\Windows</Filter>
     </ClCompile>
   </ItemGroup>

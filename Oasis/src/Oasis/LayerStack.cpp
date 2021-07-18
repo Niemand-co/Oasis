@@ -15,6 +15,7 @@ namespace Oasis {
 	void LayerStack::PushLayer(Layer* layer) {
 
 		m_Layers.emplace(m_LayerIndex, layer);
+		layer->OnAttach();
 
 	}
 
@@ -31,6 +32,7 @@ namespace Oasis {
 	void LayerStack::PushOverlay(Layer* overlay) {
 
 		m_Layers.emplace_back(overlay);
+		overlay->OnAttach();
 
 	}
 

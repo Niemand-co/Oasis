@@ -9,7 +9,7 @@ namespace Oasis {
 	class OASIS_API KeyEvent : public Event{
 
 	public:
-		inline int GetKetCode() const { return m_KeyCode; }
+		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput);
 
@@ -18,8 +18,6 @@ namespace Oasis {
 
 		KeyEvent(){}
 		KeyEvent(int KeyCode) : m_KeyCode(KeyCode) {}
-
-		
 
 	};
 
@@ -55,6 +53,22 @@ namespace Oasis {
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased);
+
+	};
+
+	class OASIS_API KeyTypeEvent : public KeyEvent {
+
+	public:
+
+		KeyTypeEvent(int KeyCode) : KeyEvent(KeyCode) {}
+
+		std::string ToString() const override {
+			std::stringstream ss;
+			ss << "KeyTypeEvent:" << m_KeyCode << '.';
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped);
 
 	};
 

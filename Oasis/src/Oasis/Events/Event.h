@@ -12,7 +12,7 @@ namespace Oasis {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WIndowLosFocus, WindowMov,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -45,7 +45,7 @@ namespace Oasis {
 		bool m_Handled = false;
 	};
 
-	class EventDispatcher {
+	class OASIS_API EventDispatcher {
 
 		template<typename T>
 		using EventFunc = std::function<bool(T&)>;

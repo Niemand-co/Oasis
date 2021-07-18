@@ -6,7 +6,7 @@
 
 namespace Oasis {
 
-	class WindowResizeEvent : public Event {
+	class OASIS_API WindowResizeEvent : public Event {
 
 	public:
 		WindowResizeEvent(int Width, int Height) : m_Width(Width), m_Height(Height) {}

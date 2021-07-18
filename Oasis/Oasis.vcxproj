@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -101,7 +101,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -127,7 +127,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -157,18 +157,22 @@
     <ClInclude Include="src\Oasis\Events\Event.h" />
     <ClInclude Include="src\Oasis\Events\MouseEvent.h" />
     <ClInclude Include="src\Oasis\Events\keyEvent.h" />
+    <ClInclude Include="src\Oasis\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Oasis\Layer.h" />
     <ClInclude Include="src\Oasis\LayerStack.h" />
     <ClInclude Include="src\Oasis\Log.h" />
     <ClInclude Include="src\Oasis\Window.h" />
-    <ClInclude Include="src\paltform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Oasis\Application.cpp" />
+    <ClCompile Include="src\Oasis\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Oasis\Layer.cpp" />
     <ClCompile Include="src\Oasis\LayerStack.cpp" />
     <ClCompile Include="src\Oasis\Log.cpp" />
-    <ClCompile Include="src\paltform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
@@ -176,6 +180,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
