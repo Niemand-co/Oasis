@@ -1,3 +1,4 @@
+#include "OApch.h"
 #include "WindowsWindow.h"
 
 #include "Oasis/Events/ApplicationEvent.h"

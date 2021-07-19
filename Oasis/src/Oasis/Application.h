@@ -1,5 +1,6 @@
 #pragma once
 
+#include "OApch.h"
 #include "Core.h"
 #include "Events/Event.h"
 #include "Oasis/Window.h"
@@ -9,6 +10,7 @@
 #include "Oasis/Events/MouseEvent.h"
 
 #include "Oasis/LayerStack.h"
+#include "ImGui/ImGuiLayer.h"
 
 namespace Oasis{
 	class OASIS_API Application{
@@ -29,6 +31,7 @@ namespace Oasis{
 	private:
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		bool OnWindowClose(WindowCloseEvent& e);
 

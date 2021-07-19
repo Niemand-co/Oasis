@@ -1,5 +1,6 @@
 #pragma once
 
+#include "OApch.h"
 #include "Oasis/Window.h"
 #include "Oasis/Log.h"
 
@@ -8,7 +9,7 @@
 
 namespace Oasis {
 
-	class WindowsWindow : public Window{
+	class OASIS_API WindowsWindow : public Window{
 
 	public:
 
@@ -19,6 +20,7 @@ namespace Oasis {
 
 		inline unsigned int GetWidth() const override { return m_Data.Width; }
 		inline unsigned int GetHeight() const override { return m_Data.Height; }
+		inline void* GetNativeWindow() const override { return m_Window; }
 
 		inline void SetEventCallback(const EventCallbackFunc& Callback) override { m_Data.EventCallback = Callback; }
 		void SetVSync(bool enabled) override;

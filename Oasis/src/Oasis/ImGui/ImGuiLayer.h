@@ -16,21 +16,12 @@ namespace Oasis {
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach();
-		void OnDetach();
-		void OnUpdate();
-		void OnEvent(Event& e);
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void ImGuiRender() override;
 
-	private:
-
-		bool ImGuiMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-		bool ImGuiMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-		bool ImGuiMouseMovedEvent(MouseMoveEvent& e);
-		bool ImGuiMouseScrolledEvent(MouseScrollEvent& e);
-		bool ImGuiWindowResizedEvent(WindowResizeEvent& e);
-		bool ImGuiKeyPressedEvent(KeyPressedEvent& e);
-		bool ImGuiKeyReleasedEvent(KeyReleasedEvent& e);
-		bool ImGuiKeyTypeEvent(KeyTypeEvent& e);
+		void Begin();
+		void End();
 
 	private:
 

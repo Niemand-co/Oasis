@@ -1,3 +1,4 @@
+#include "OApch.h"
 #include "Log.h"
 
 namespace Oasis {

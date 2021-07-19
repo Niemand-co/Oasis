@@ -1,10 +1,7 @@
 #pragma once
 
+#include "OApch.h"
 #include "Oasis/Core.h"
-
-#include <string>
-#include <functional>
-#include <ostream>
 
 namespace Oasis {
 

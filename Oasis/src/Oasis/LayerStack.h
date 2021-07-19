@@ -1,5 +1,6 @@
 #pragma once
 
+#include "OApch.h"
 #include "Core.h"
 #include "Layer.h"
 #include "Events/Event.h"
@@ -25,7 +26,7 @@ namespace Oasis {
 	private:
 
 		std::vector<Layer*> m_Layers;
-		std::vector<Layer*>::iterator m_LayerIndex;
+		unsigned int m_LayerIndex = 0;
 
 	};
 

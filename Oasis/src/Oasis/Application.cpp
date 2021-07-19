@@ -1,3 +1,4 @@
+#include "OApch.h"
 #include "Application.h"
 
 #include "Events/ApplicationEvent.h"
@@ -16,8 +17,9 @@ namespace Oasis {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 
-		unsigned int id;
-		glGenVertexArrays(1, &id);
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
+
 	}
 
 	void Application::PushLayer(Layer* layer) {
@@ -56,6 +58,13 @@ namespace Oasis {
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack) {
+				layer->ImGuiRender();
+			}
+			m_ImGuiLayer->End();
+
 
 			m_Window->OnUpdate();
 		}

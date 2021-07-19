@@ -1,9 +1,9 @@
+#include "OApch.h"
 #include "LayerStack.h"
 
 namespace Oasis {
 
 	LayerStack::LayerStack() {
-		m_LayerIndex = m_Layers.begin();
 	}
 
 	LayerStack::~LayerStack() {
@@ -14,7 +14,8 @@ namespace Oasis {
 
 	void LayerStack::PushLayer(Layer* layer) {
 
-		m_Layers.emplace(m_LayerIndex, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayerIndex, layer);
+		m_LayerIndex++;
 		layer->OnAttach();
 
 	}

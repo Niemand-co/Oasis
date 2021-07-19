@@ -30,6 +30,9 @@ project "Oasis"
 	targetdir ( "bin/" ..outputdir.. "/%{prj.name}")
 	objdir ( "bin-int/" ..outputdir.. "/%{prj.name}")
 
+	pchheader "OApch.h"
+	pchsource "Oasis/src/OApch.cpp"
+
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",

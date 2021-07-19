@@ -76,7 +76,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>OApch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -98,7 +99,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>OApch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -124,7 +126,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>OApch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -149,6 +152,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\OApch.h" />
     <ClInclude Include="src\Oasis.h" />
     <ClInclude Include="src\Oasis\Application.h" />
     <ClInclude Include="src\Oasis\Core.h" />
@@ -162,16 +166,18 @@
     <ClInclude Include="src\Oasis\LayerStack.h" />
     <ClInclude Include="src\Oasis\Log.h" />
     <ClInclude Include="src\Oasis\Window.h" />
-    <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\OApch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\Oasis\Application.cpp" />
+    <ClCompile Include="src\Oasis\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Oasis\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Oasis\Layer.cpp" />
     <ClCompile Include="src\Oasis\LayerStack.cpp" />
     <ClCompile Include="src\Oasis\Log.cpp" />
-    <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

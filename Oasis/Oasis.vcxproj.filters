@@ -10,17 +10,18 @@
     <Filter Include="Oasis\ImGui">
       <UniqueIdentifier>{0E885FDD-7A3D-D8D2-0332-D2A96FE6CED6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="paltform">
-      <UniqueIdentifier>{EA85AB07-D652-0613-FF6B-F4BAEB973BA1}</UniqueIdentifier>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="paltform\OpenGL">
-      <UniqueIdentifier>{DE236D63-4AAF-DA27-53C0-5D1CBFCA3628}</UniqueIdentifier>
+    <Filter Include="platform\OpenGL">
+      <UniqueIdentifier>{3E351A86-AAC0-874A-B3D1-0A3F1FDCE34A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="paltform\Windows">
-      <UniqueIdentifier>{247A2D29-1073-4C7B-39A5-310025FD2B87}</UniqueIdentifier>
+    <Filter Include="platform\Windows">
+      <UniqueIdentifier>{84B77CA1-70B0-9BF3-99E2-8078853A7BFF}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OApch.h" />
     <ClInclude Include="src\Oasis.h" />
     <ClInclude Include="src\Oasis\Application.h">
       <Filter>Oasis</Filter>
@@ -58,16 +59,17 @@
     <ClInclude Include="src\Oasis\Window.h">
       <Filter>Oasis</Filter>
     </ClInclude>
-    <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>paltform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\platform\Windows\WindowsWindow.h">
-      <Filter>paltform\Windows</Filter>
+      <Filter>platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\OApch.cpp" />
     <ClCompile Include="src\Oasis\Application.cpp">
       <Filter>Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\ImGui\ImGuiBuild.cpp">
+      <Filter>Oasis\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\ImGui\ImGuiLayer.cpp">
       <Filter>Oasis\ImGui</Filter>
@@ -81,11 +83,8 @@
     <ClCompile Include="src\Oasis\Log.cpp">
       <Filter>Oasis</Filter>
     </ClCompile>
-    <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>paltform\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp">
-      <Filter>paltform\Windows</Filter>
+      <Filter>platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
