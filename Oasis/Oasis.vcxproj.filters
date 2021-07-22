@@ -13,9 +13,6 @@
     <Filter Include="platform">
       <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform\OpenGL">
-      <UniqueIdentifier>{3E351A86-AAC0-874A-B3D1-0A3F1FDCE34A}</UniqueIdentifier>
-    </Filter>
     <Filter Include="platform\Windows">
       <UniqueIdentifier>{84B77CA1-70B0-9BF3-99E2-8078853A7BFF}</UniqueIdentifier>
     </Filter>
@@ -62,6 +59,10 @@
     <ClInclude Include="src\platform\Windows\WindowsWindow.h">
       <Filter>platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\Input.h" />
+    <ClInclude Include="src\platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Oasis\KeyCodes.h" />
+    <ClInclude Include="src\Oasis\MouseButtons.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp" />
@@ -86,5 +87,6 @@
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp">
       <Filter>platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

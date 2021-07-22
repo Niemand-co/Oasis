@@ -98,6 +98,7 @@ project "SandBox"
 
 	includedirs{
 		"Oasis/vendor/spdlog/include",
+		"Oasis/vendor/imgui",
 		"Oasis/src"
 	}
 

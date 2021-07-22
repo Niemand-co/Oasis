@@ -1,6 +1,5 @@
 #pragma once
 
-#include "OApch.h"
 #include "Core.h"
 #include "Events/Event.h"
 #include "Oasis/Window.h"

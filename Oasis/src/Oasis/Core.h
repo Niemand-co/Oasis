@@ -5,6 +5,7 @@
 		#define OASIS_API __declspec(dllexport)
 	#else
 		#define OASIS_API __declspec(dllimport)
+		#define IMGUI_API __declspec(dllimport)
 	#endif
 #else
 	#error OASIS ONLY SUPPORT WINDOWS!

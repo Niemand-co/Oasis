@@ -1,6 +1,5 @@
 #pragma once
 
-#include "OApch.h"
 #include "Core.h"
 #include "Layer.h"
 #include "Events/Event.h"

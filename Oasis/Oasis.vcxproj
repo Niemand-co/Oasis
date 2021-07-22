@@ -162,10 +162,14 @@
     <ClInclude Include="src\Oasis\Events\MouseEvent.h" />
     <ClInclude Include="src\Oasis\Events\keyEvent.h" />
     <ClInclude Include="src\Oasis\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Oasis\Input.h" />
+    <ClInclude Include="src\Oasis\KeyCodes.h" />
     <ClInclude Include="src\Oasis\Layer.h" />
     <ClInclude Include="src\Oasis\LayerStack.h" />
     <ClInclude Include="src\Oasis\Log.h" />
+    <ClInclude Include="src\Oasis\MouseButtons.h" />
     <ClInclude Include="src\Oasis\Window.h" />
+    <ClInclude Include="src\platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +182,7 @@
     <ClCompile Include="src\Oasis\Layer.cpp" />
     <ClCompile Include="src\Oasis\LayerStack.cpp" />
     <ClCompile Include="src\Oasis\Log.cpp" />
+    <ClCompile Include="src\platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
