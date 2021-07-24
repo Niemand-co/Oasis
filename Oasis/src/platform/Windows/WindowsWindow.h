@@ -3,6 +3,7 @@
 #include "OApch.h"
 #include "Oasis/Window.h"
 #include "Oasis/Log.h"
+#include "Oasis/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
@@ -34,6 +35,7 @@ namespace Oasis {
 	private:
 
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData {
 			std::string title;

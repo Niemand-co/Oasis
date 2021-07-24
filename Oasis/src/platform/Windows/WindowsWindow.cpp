@@ -5,6 +5,8 @@
 #include "Oasis/Events/KeyEvent.h"
 #include "Oasis/Events/MouseEvent.h"
 
+#include "platform/OpenGL/OpenGLContext.h"
+
 
 namespace Oasis {
 
@@ -42,10 +44,9 @@ namespace Oasis {
 		}
 
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
 
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		OASIS_CORE_ASSERT(status, "Failed to initialize Glad!");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -143,7 +144,7 @@ namespace Oasis {
 
 	void WindowsWindow::OnUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffer();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled) {

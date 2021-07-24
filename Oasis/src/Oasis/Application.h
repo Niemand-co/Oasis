@@ -11,6 +11,9 @@
 #include "Oasis/LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
 
+#include "Oasis/Renderer/Shader.h"
+#include "Oasis/Renderer/Buffer.h"
+
 namespace Oasis{
 	class OASIS_API Application{
 
@@ -26,6 +29,13 @@ namespace Oasis{
 
 		inline Window& GetWindow() { return *m_Window; }
 		inline static Application& Get() { return *s_Instance; }
+
+	private:
+
+		unsigned int m_VertexArray;
+		std::unique_ptr<Shader> m_Shaders;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
 	private:
 

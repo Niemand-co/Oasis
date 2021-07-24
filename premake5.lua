@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Oasis/vendor/GLFW/include"
 IncludeDir["Glad"] = "Oasis/vendor/Glad/include"
 IncludeDir["ImGui"] = "Oasis/vendor/imgui"
+IncludeDir["glm"] = "Oasis/vendor/glm"
 
 include "Oasis/vendor/GLFW"
 include "Oasis/vendor/Glad"
@@ -36,6 +37,8 @@ project "Oasis"
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs{
@@ -43,7 +46,8 @@ project "Oasis"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links{
@@ -99,7 +103,8 @@ project "SandBox"
 	includedirs{
 		"Oasis/vendor/spdlog/include",
 		"Oasis/vendor/imgui",
-		"Oasis/src"
+		"Oasis/src",
+		"Oasis/vendor/glm"
 	}
 
 	links{

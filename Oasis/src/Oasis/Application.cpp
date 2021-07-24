@@ -20,6 +20,44 @@ namespace Oasis {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
+		glGenVertexArrays(1, &m_VertexArray);
+		glBindVertexArray(m_VertexArray);
+
+		float Vertices[3 * 3] = {
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.0f, 0.5f, 0.0f
+		};
+		m_VertexBuffer.reset(VertexBuffer::Create(Vertices, sizeof(Vertices)));
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+		uint32_t Indices[3] = { 0, 1, 2 };
+		m_IndexBuffer.reset(IndexBuffer::Create(Indices, sizeof(Indices) / sizeof(uint32_t)));
+
+		std::string VertexShaderSrc = R"(#version 330 core
+			layout (location = 0) in vec3 aPos;
+
+			void main(){
+				gl_Position = vec4(aPos, 1.0);
+			}
+			)";
+
+		std::string FragmentShaderSrc = R"(
+			#version 330 core
+			out vec4 FragColor;
+	
+
+			void main(){
+				FragColor = vec4(0.8, 0.2, 0.3, 1.0);
+			}
+
+			)";
+
+
+		m_Shaders.reset(new Shader(VertexShaderSrc, FragmentShaderSrc));
+
 	}
 
 	void Application::PushLayer(Layer* layer) {
@@ -51,8 +89,12 @@ namespace Oasis {
 	void Application::Run() {
 
 		while (m_Running) {
-			glClearColor(0.5f, 0.0f, 0.0f, 1.0f);
+			glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			m_Shaders->Bind();
+			glBindVertexArray(m_VertexArray);
+			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
