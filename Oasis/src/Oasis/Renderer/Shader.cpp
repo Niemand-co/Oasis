@@ -75,7 +75,7 @@ namespace Oasis {
 			glGetProgramInfoLog(m_RendererID, maxLength, &maxLength, &infoLog[0]);
 
 			OASIS_CORE_ERROR("Shader Program Link Error: {0}", infoLog.data());
-			OASIS_CORE_ASSERT("Link Failed!");
+			OASIS_CORE_ASSERT(false, "Link Failed!");
 			return;
 
 		}

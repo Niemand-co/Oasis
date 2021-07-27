@@ -10,12 +10,12 @@ namespace Oasis {
 
 		switch (Renderer::GetRendererAPI()) {
 
-		case RendererAPI::None: {OASIS_CORE_ASSERT(false, "The Renderer API is not supported!"); return nullptr; }
-		case RendererAPI::OpenGL: {return new OpenGLVertexBuffer(Vertices, size); }
+		case RendererAPI::API::None: {OASIS_CORE_ASSERT(false, "The Renderer API is not supported!"); return nullptr; }
+		case RendererAPI::API::OpenGL: {return new OpenGLVertexBuffer(Vertices, size); }
 
 		}
 
-		OASIS_CORE_ASSERT(flase, "Unkhown API!");
+		OASIS_CORE_ASSERT(false, "Unkhown API!");
 		return nullptr;
 	
 	}
@@ -24,12 +24,12 @@ namespace Oasis {
 	
 		switch (Renderer::GetRendererAPI()) {
 
-		case RendererAPI::None: {OASIS_CORE_ASSERT(false, "The Renderer API is not supported!"); return nullptr; }
-		case RendererAPI::OpenGL: {return new OpenGLIndexBuffer(Indices, size); }
+		case RendererAPI::API::None: {OASIS_CORE_ASSERT(false, "The Renderer API is not supported!"); return nullptr; }
+		case RendererAPI::API::OpenGL: {return new OpenGLIndexBuffer(Indices, size); }
 
 		}
 
-		OASIS_CORE_ASSERT(flase, "Unkhown API!");
+		OASIS_CORE_ASSERT(false, "Unkhown API!");
 		return nullptr;
 	
 	}

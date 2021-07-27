@@ -13,8 +13,14 @@
     <Filter Include="src\Oasis\ImGui">
       <UniqueIdentifier>{A5BB39F5-1147-A7B9-1A58-2AAE866203BA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Oasis\Renderer">
+      <UniqueIdentifier>{413CC2BD-2D20-8313-9680-7D6682836D95}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\platform">
       <UniqueIdentifier>{41663D6D-2DC9-CC11-D64E-05C8C2909894}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\platform\OpenGL">
+      <UniqueIdentifier>{555C82A0-C1BD-5FAE-4A2B-A660B68B966D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\platform\Windows">
       <UniqueIdentifier>{7BC1E908-6750-73D2-106F-87CDFCDC8378}</UniqueIdentifier>
@@ -90,8 +96,41 @@
     <ClInclude Include="src\Oasis\MouseButtons.h">
       <Filter>src\Oasis</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\Buffer.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\GraphicsContext.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\Renderer.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\RendererAPI.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\RendererCommand.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\Shader.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\VertexArray.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Oasis\Window.h">
       <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLContext.h">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\Windows\WindowsInput.h">
       <Filter>src\platform\Windows</Filter>
@@ -1344,12 +1383,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Oasis\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Oasis\Renderer\Shader.h" />
-    <ClInclude Include="src\Oasis\Renderer\Buffer.h" />
-    <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Oasis\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp">
@@ -1373,16 +1406,41 @@
     <ClCompile Include="src\Oasis\Log.cpp">
       <Filter>src\Oasis</Filter>
     </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\Buffer.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\Renderer.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\RendererAPI.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\RendererCommad.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\Shader.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\VertexArray.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\platform\Windows\WindowsInput.cpp">
       <Filter>src\platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp">
       <Filter>src\platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\Oasis\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Oasis\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Oasis\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

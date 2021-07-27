@@ -1,23 +1,19 @@
 #pragma once
+#include "RendererCommand.h"
 
 namespace Oasis {
-
-	enum class RendererAPI {
-
-		None = 0,
-		OpenGL = 1
-
-	};
 
 	class Renderer {
 
 	public:
 
-		inline static RendererAPI GetRendererAPI() { return s_RendererAPI; }
+		static void BeginScene();
+		static void EndScene();
 
-	private:
+		static void Submit(const std::shared_ptr<VertexArray> vertexArray);
 
-		static RendererAPI s_RendererAPI;
+		inline static RendererAPI::API GetRendererAPI() { return RendererAPI::GetAPI(); }
+
 
 	};
 

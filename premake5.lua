@@ -73,7 +73,10 @@ project "Oasis"
 		}
 
 		filter "configurations:Debug"
-			defines "OASIS_DEBUG"
+			defines {
+				"OASIS_DEBUG",
+				"OASIS_ENABLE_ASSERTS"
+			}
 			buildoptions "/MDd"
 			symbols "On"
 

@@ -79,7 +79,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>OApch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DEBUG;OASIS_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -152,11 +152,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Oasis\Renderer\Renderer.h" />
-    <ClInclude Include="src\Oasis\Renderer\Buffer.h" />
-    <ClInclude Include="src\Oasis\Renderer\Shader.h" />
-    <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\OApch.h" />
     <ClInclude Include="src\Oasis.h" />
     <ClInclude Include="src\Oasis\Application.h" />
@@ -173,8 +168,18 @@
     <ClInclude Include="src\Oasis\LayerStack.h" />
     <ClInclude Include="src\Oasis\Log.h" />
     <ClInclude Include="src\Oasis\MouseButtons.h" />
+    <ClInclude Include="src\Oasis\Renderer\Buffer.h" />
     <ClInclude Include="src\Oasis\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Oasis\Renderer\Renderer.h" />
+    <ClInclude Include="src\Oasis\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Oasis\Renderer\RendererCommand.h" />
+    <ClInclude Include="src\Oasis\Renderer\Shader.h" />
+    <ClInclude Include="src\Oasis\Renderer\VertexArray.h" />
     <ClInclude Include="src\Oasis\Window.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\platform\Windows\WindowsWindow.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -594,11 +599,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Oasis\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Oasis\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Oasis\Renderer\Shader.cpp" />
-    <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\OApch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -608,6 +608,16 @@
     <ClCompile Include="src\Oasis\Layer.cpp" />
     <ClCompile Include="src\Oasis\LayerStack.cpp" />
     <ClCompile Include="src\Oasis\Log.cpp" />
+    <ClCompile Include="src\Oasis\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Oasis\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Oasis\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\Oasis\Renderer\RendererCommad.cpp" />
+    <ClCompile Include="src\Oasis\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Oasis\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
