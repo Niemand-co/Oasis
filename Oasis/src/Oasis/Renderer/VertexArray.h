@@ -1,11 +1,11 @@
 #pragma once
-
+#include "Oasis/Core.h"
 #include <memory>
 #include "Oasis/Renderer/Buffer.h"
 
 namespace Oasis {
 
-	class VertexArray {
+	class OASIS_API VertexArray {
 
 	public:
 

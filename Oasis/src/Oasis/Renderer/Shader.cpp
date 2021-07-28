@@ -103,4 +103,11 @@ namespace Oasis {
 
 	}
 
+	void Shader::UploadUniformMat4(const std::string paraName, glm::mat4 matrix){
+
+		glUseProgram(m_RendererID);
+		glUniformMatrix4fv(glGetUniformLocation(m_RendererID, paraName.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
+
+	}
+
 }

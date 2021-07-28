@@ -83,7 +83,7 @@ namespace Oasis {
 
 	};
 
-	class BufferLayout {
+	class OASIS_API BufferLayout {
 
 	public:
 
@@ -128,7 +128,7 @@ namespace Oasis {
 	};
 
 
-	class VertexBuffer {
+	class OASIS_API VertexBuffer {
 
 	public:
 		
@@ -146,7 +146,7 @@ namespace Oasis {
 	};
 
 
-	class IndexBuffer {
+	class OASIS_API IndexBuffer {
 
 	public:
 

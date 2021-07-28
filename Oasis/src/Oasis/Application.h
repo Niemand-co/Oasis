@@ -14,6 +14,8 @@
 #include "Oasis/Renderer/Shader.h"
 #include "Oasis/Renderer/Buffer.h"
 #include "Oasis/Renderer/VertexArray.h"
+#include "Oasis/Renderer/OrthographicCamera.h"
+
 
 #include "Oasis/KeyCodes.h"
 
@@ -35,19 +37,11 @@ namespace Oasis{
 
 	private:
 
-		std::shared_ptr<Shader> m_Shaders;
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-	private:
-
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		bool OnWindowClose(WindowCloseEvent& e);
-		bool OnKeyPressed(KeyPressedEvent& e);
-
+		
 		LayerStack m_LayerStack;
 
 		static Application* s_Instance;

@@ -1,9 +1,13 @@
 #pragma once
+#include "Oasis/Core.h"
 #include <string>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace Oasis {
 
-	class Shader {
+	class OASIS_API Shader {
 
 	public:
 
@@ -12,6 +16,8 @@ namespace Oasis {
 
 		void Bind();
 		void Unbind();
+
+		void UploadUniformMat4(const std::string, glm::mat4 matrix);
 
 	private:
 

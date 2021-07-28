@@ -1383,6 +1383,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp">
@@ -1442,5 +1443,6 @@
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp">
       <Filter>src\platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>

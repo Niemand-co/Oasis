@@ -3,7 +3,7 @@
 
 namespace Oasis {
 
-	class RendererCommand {
+	class OASIS_API RendererCommand {
 
 	public:
 

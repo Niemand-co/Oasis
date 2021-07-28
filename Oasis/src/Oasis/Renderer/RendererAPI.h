@@ -1,4 +1,5 @@
 #pragma once
+#include "Oasis/Core.h"
 #include <glm/glm.hpp>
 
 #include "VertexArray.h"
