@@ -1384,6 +1384,8 @@
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
     <ClInclude Include="src\Oasis\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Oasis\Core\TimeStep.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLTimeStep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp">
@@ -1444,5 +1446,7 @@
       <Filter>src\platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLTimeStep.cpp" />
+    <ClCompile Include="src\Oasis\Core\TimeStep.cpp" />
   </ItemGroup>
 </Project>

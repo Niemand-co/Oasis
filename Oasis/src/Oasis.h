@@ -8,6 +8,8 @@
 #include "Oasis/ImGui/ImGuiLayer.h"
 #include "Oasis/Log.h"
 
+#include "Oasis/Core/TimeStep.h"
+
 #include "Oasis/KeyCodes.h"
 #include "Oasis/MouseButtons.h"
 

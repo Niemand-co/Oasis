@@ -64,12 +64,21 @@ public:
 
 	}
 	
-	void OnUpdate() override {
+	void OnUpdate(std::shared_ptr<Oasis::TimeStep> timeStep, float DeltaTime) override {
+
+		OASIS_TRACE("Time: {0}s", timeStep->GetSeconds());
 
 		if (Oasis::Input::IsKeyPressed(OASIS_KEY_LEFT)) {
-
-			m_CameraPosition.x -= m_CameraSpeed;
-
+			m_CameraPosition.x -= m_CameraSpeed * DeltaTime;
+		}
+		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_RIGHT)) {
+			m_CameraPosition.x += m_CameraSpeed * DeltaTime;
+		}
+		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_DOWN)) {
+			m_CameraPosition.y -= m_CameraSpeed * DeltaTime;
+		}
+		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_UP)) {
+			m_CameraPosition.y += m_CameraSpeed * DeltaTime;
 		}
 
 		Oasis::RendererCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 0.2f));
@@ -113,7 +122,7 @@ private:
 	Oasis::OrthographicCamera camera;
 
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.1f;
+	float m_CameraSpeed = 1.0f;
 };
 
 

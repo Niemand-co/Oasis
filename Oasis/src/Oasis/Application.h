@@ -15,6 +15,8 @@
 #include "Oasis/Renderer/Buffer.h"
 #include "Oasis/Renderer/VertexArray.h"
 #include "Oasis/Renderer/OrthographicCamera.h"
+#include "Oasis/Core/TimeStep.h"
+#include "platform/OpenGL/OpenGLTimeStep.h"
 
 
 #include "Oasis/KeyCodes.h"
@@ -43,6 +45,8 @@ namespace Oasis{
 		bool OnWindowClose(WindowCloseEvent& e);
 		
 		LayerStack m_LayerStack;
+
+		std::shared_ptr<TimeStep> timeStep;
 
 		static Application* s_Instance;
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "Oasis/Core/TimeStep.h"
 #include "Events/Event.h"
 
 namespace Oasis {
@@ -15,7 +16,7 @@ namespace Oasis {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(std::shared_ptr<TimeStep> timeStep, float DeltaTime) {}
 		virtual void ImGuiRender() {}
 		virtual void OnEvent(Event& e) {}
 

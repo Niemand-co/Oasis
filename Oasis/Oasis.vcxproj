@@ -156,6 +156,7 @@
     <ClInclude Include="src\Oasis.h" />
     <ClInclude Include="src\Oasis\Application.h" />
     <ClInclude Include="src\Oasis\Core.h" />
+    <ClInclude Include="src\Oasis\Core\TimeStep.h" />
     <ClInclude Include="src\Oasis\EntryPoint.h" />
     <ClInclude Include="src\Oasis\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Oasis\Events\Event.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLTimeStep.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\platform\Windows\WindowsWindow.h" />
@@ -604,6 +606,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Oasis\Application.cpp" />
+    <ClCompile Include="src\Oasis\Core\TimeStep.cpp" />
     <ClCompile Include="src\Oasis\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Oasis\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Oasis\Layer.cpp" />
@@ -619,6 +622,7 @@
     <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLTimeStep.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />

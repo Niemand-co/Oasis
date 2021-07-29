@@ -21,6 +21,7 @@ namespace Oasis {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
+		timeStep.reset(TimeStep::Create());
 	}
 
 	void Application::PushLayer(Layer* layer) {
@@ -53,9 +54,11 @@ namespace Oasis {
 
 		while (m_Running) {
 			
+			float DeltaTime = timeStep->UpdateTimeStep();
+
 
 			for (Layer* layer : m_LayerStack) {
-				layer->OnUpdate();
+				layer->OnUpdate(timeStep, DeltaTime);
 			}
 
 			m_ImGuiLayer->Begin();
