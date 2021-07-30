@@ -181,6 +181,7 @@
     <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLTimeStep.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\platform\Windows\WindowsInput.h" />
@@ -622,6 +623,7 @@
     <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLTimeStep.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsInput.cpp" />

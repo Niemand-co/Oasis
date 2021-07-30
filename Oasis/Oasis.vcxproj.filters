@@ -1386,6 +1386,7 @@
     <ClInclude Include="src\Oasis\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Oasis\Core\TimeStep.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLTimeStep.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp">
@@ -1448,5 +1449,6 @@
     <ClCompile Include="src\Oasis\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLTimeStep.cpp" />
     <ClCompile Include="src\Oasis\Core\TimeStep.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>

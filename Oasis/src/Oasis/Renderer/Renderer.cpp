@@ -1,5 +1,6 @@
 #include "OApch.h"
 #include "Renderer.h"
+#include "platform/OpenGL/OpenGLShader.h"
 
 namespace Oasis {
 
@@ -17,14 +18,18 @@ namespace Oasis {
 
 	}
 
-	void Renderer::Submit(const std::shared_ptr<VertexArray> vertexArray, const std::shared_ptr<Shader> shader){
+	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform){
 	
-		shader->Bind();
-		shader->UploadUniformMat4("viewProjection", m_SceneData->ProjectionViewMatrix);
-
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->Bind();
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("viewProjection", m_SceneData->ProjectionViewMatrix); 
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("model", transform);
+		
 		vertexArray->Bind();
 		RendererCommand::DrawIndexed(vertexArray);
 	
+		shader->Unbind();
+		vertexArray->Unbind();
+
 	}
 
 }

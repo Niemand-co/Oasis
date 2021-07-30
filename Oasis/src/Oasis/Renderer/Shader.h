@@ -2,26 +2,18 @@
 #include "Oasis/Core.h"
 #include <string>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
 namespace Oasis {
 
 	class OASIS_API Shader {
 
 	public:
 
-		Shader(std::string VertexShaderPath, std::string FragmentShaderPath);
-		~Shader();
+		virtual ~Shader() = default;
 
-		void Bind();
-		void Unbind();
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
-		void UploadUniformMat4(const std::string, glm::mat4 matrix);
-
-	private:
-
-		uint32_t m_RendererID;
+		static Shader* Create(std::string& VertexShaderSrc, std::string& FragmentShaderSrc);
 
 	};
 
