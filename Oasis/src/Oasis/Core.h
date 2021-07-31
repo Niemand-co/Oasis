@@ -1,11 +1,12 @@
 #pragma once
+#include <memory>
 
 #ifdef OASIS_PLATFORM_WINDOWS
 	#ifdef OASIS_BUILD_DLL
-		#define OASIS_API __declspec(dllexport)
+		#define OASIS_API //__declspec(dllexport)
 	#else
-		#define OASIS_API __declspec(dllimport)
-		#define IMGUI_API __declspec(dllimport)
+		#define OASIS_API //__declspec(dllimport)
+		#define IMGUI_API //__declspec(dllimport)
 	#endif
 #else
 	#error OASIS ONLY SUPPORT WINDOWS!
@@ -22,3 +23,13 @@
 #define BIT(x) (1 << x)
 
 #define OASIS_BIND_EVENT_FUNC(FUNC) std::bind(&FUNC, this, std::placeholders::_1)
+
+namespace Oasis {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}

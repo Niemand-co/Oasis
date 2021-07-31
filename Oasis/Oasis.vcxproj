@@ -23,19 +23,19 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -54,25 +54,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Debug-windows-x86_64\Oasis\</OutDir>
     <IntDir>..\bin-int\Debug-windows-x86_64\Oasis\</IntDir>
     <TargetName>Oasis</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Release-windows-x86_64\Oasis\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\Oasis\</IntDir>
     <TargetName>Oasis</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Dist-windows-x86_64\Oasis\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\Oasis\</IntDir>
     <TargetName>Oasis</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -80,21 +77,22 @@
       <PrecompiledHeaderFile>OApch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DEBUG;OASIS_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\Oasis\Oasis.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Oasis\Oasis.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Oasis\Oasis.dll ..\bin\Debug-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Oasis\Oasis.dll ..\bin\Debug-windows-x86_64\SandBox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Oasis\Oasis.lib\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Oasis\Oasis.lib ..\bin\Debug-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Oasis\Oasis.lib ..\bin\Debug-windows-x86_64\SandBox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -103,13 +101,13 @@
       <PrecompiledHeaderFile>OApch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -117,11 +115,12 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Release-windows-x86_64\Oasis\Oasis.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\Oasis\Oasis.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Oasis\Oasis.dll ..\bin\Release-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Oasis\Oasis.dll ..\bin\Release-windows-x86_64\SandBox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\Oasis\Oasis.lib\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Oasis\Oasis.lib ..\bin\Release-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Oasis\Oasis.lib ..\bin\Release-windows-x86_64\SandBox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -130,13 +129,13 @@
       <PrecompiledHeaderFile>OApch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OASIS_PLATFORM_WINDOWS;OASIS_BUILD_DLL;GLFW_INCLUDE_NONE;OASIS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -144,11 +143,12 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\Oasis\Oasis.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Oasis\Oasis.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Oasis\Oasis.dll ..\bin\Dist-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Oasis\Oasis.dll ..\bin\Dist-windows-x86_64\SandBox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Oasis\Oasis.lib\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Oasis\Oasis.lib ..\bin\Dist-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Oasis\Oasis.lib ..\bin\Dist-windows-x86_64\SandBox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -176,12 +176,14 @@
     <ClInclude Include="src\Oasis\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Oasis\Renderer\RendererCommand.h" />
     <ClInclude Include="src\Oasis\Renderer\Shader.h" />
+    <ClInclude Include="src\Oasis\Renderer\Texture.h" />
     <ClInclude Include="src\Oasis\Renderer\VertexArray.h" />
     <ClInclude Include="src\Oasis\Window.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLTimeStep.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\platform\Windows\WindowsInput.h" />
@@ -601,6 +603,7 @@
     <ClInclude Include="vendor\glm\glm\vec3.hpp" />
     <ClInclude Include="vendor\glm\glm\vec4.hpp" />
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
+    <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp">
@@ -619,15 +622,18 @@
     <ClCompile Include="src\Oasis\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Oasis\Renderer\RendererCommad.cpp" />
     <ClCompile Include="src\Oasis\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Oasis\Renderer\Texture.cpp" />
     <ClCompile Include="src\Oasis\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLTimeStep.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

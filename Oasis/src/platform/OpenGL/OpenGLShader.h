@@ -21,7 +21,7 @@ namespace Oasis {
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
-		void UploadUniformInt(const std::string&, int& value);
+		void UploadUniformInt(const std::string&, int value);
 
 		void UploadUniformFloat(const std::string&, float& value);
 		void UploadUniformFloat2(const std::string&, const glm::vec2& value);

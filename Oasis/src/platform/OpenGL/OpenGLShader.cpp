@@ -112,7 +112,7 @@ namespace Oasis {
 
 	}
 
-	void OpenGLShader::UploadUniformInt(const std::string& paraName, int& value)
+	void OpenGLShader::UploadUniformInt(const std::string& paraName, int value)
 	{
 		glUniform1i(GetLocation(m_RendererID, paraName), value);
 	}

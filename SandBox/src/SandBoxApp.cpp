@@ -34,25 +34,31 @@ public:
 
 			)";
 
-	std::string CubeVertexShaderSrc = R"(#version 330 core
+	std::string SquareVertexShaderSrc = R"(#version 330 core
 			layout (location = 0) in vec3 aPos;
+			layout (location = 1) in vec2 aTexCoord;
+			out vec2 v_TexCoord;
 
 			uniform mat4 viewProjection;
 			uniform mat4 model;
 
 			void main(){
-
+				v_TexCoord = aTexCoord;
 				gl_Position = viewProjection * model * vec4(aPos, 1.0);
 			}
 			)";
 
-	std::string CubeFragmentShaderSrc = R"(
+	std::string SquareFragmentShaderSrc = R"(
 			#version 330 core
 			out vec4 FragColor;
 			uniform vec3 u_Color;
+			uniform sampler2D tex;
+
+			in vec2 v_TexCoord;
 
 			void main(){
-				FragColor = vec4(u_Color, 1.0);
+				FragColor = vec4(texture(tex, v_TexCoord).rgb, 1.0);
+				//FragColor = vec4(u_Color, 1.0);
 				//FragColor = vec4(0.2, 0.3, 0.8, 1.0);
 			}
 
@@ -89,34 +95,40 @@ public:
 		// -----------------------------------
 
 
-		// ---Cube-----------------------------
-		m_CubeVertexArray.reset(Oasis::VertexArray::Create());
-		float CubeVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.5f, 0.5f, 0.0f,
-			-0.5f, 0.5f, 0.0f
+		// ---Square-----------------------------
+		m_SquareVertexArray.reset(Oasis::VertexArray::Create());
+		float SquareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f, 0.5f, 0.0f, 0.0f, 1.0f
 		};
-		m_CubeVertexBuffer.reset(Oasis::VertexBuffer::Create(CubeVertices, sizeof(CubeVertices)));
+		m_SquareVertexBuffer.reset(Oasis::VertexBuffer::Create(SquareVertices, sizeof(SquareVertices)));
 
 
-		Oasis::BufferLayout CubeLayout = {
+		Oasis::BufferLayout SquareLayout = {
 
-			{Oasis::ShaderDataType::Float3, "aPos"}
+			{Oasis::ShaderDataType::Float3, "aPos"},
+			{Oasis::ShaderDataType::Float2, "aTexCoord"}
 
 		};
 
-		m_CubeVertexBuffer->SetLayout(CubeLayout);
-		m_CubeVertexArray->AddVertexBuffer(m_CubeVertexBuffer);
+		m_SquareVertexBuffer->SetLayout(SquareLayout);
+		m_SquareVertexArray->AddVertexBuffer(m_SquareVertexBuffer);
 
-		uint32_t CubeIndices[6] = { 0, 1, 3, 1, 2, 3 };
-		m_CubeIndexBuffer.reset(Oasis::IndexBuffer::Create(CubeIndices, sizeof(CubeIndices) / sizeof(uint32_t)));
+		uint32_t SquareIndices[6] = { 0, 1, 3, 1, 2, 3 };
+		m_SquareIndexBuffer.reset(Oasis::IndexBuffer::Create(SquareIndices, sizeof(SquareIndices) / sizeof(uint32_t)));
 
-		m_CubeVertexArray->SetIndexBuffer(m_CubeIndexBuffer);
+		m_SquareVertexArray->SetIndexBuffer(m_SquareIndexBuffer);
 
 		// -----------------------------------
-		m_CubeShaders.reset(Oasis::Shader::Create(CubeVertexShaderSrc, CubeFragmentShaderSrc));
+		m_SquareShaders.reset(Oasis::Shader::Create(SquareVertexShaderSrc, SquareFragmentShaderSrc));
 		m_Shaders.reset(Oasis::Shader::Create(VertexShaderSrc, FragmentShaderSrc));
+
+		m_Texture = Oasis::Texture2D::Create("assets/textures/Checkerboard.png");
+
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->Bind();
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->UploadUniformInt("tex", 0);
 
 	}
 	
@@ -158,9 +170,10 @@ public:
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_Position);
 
-		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_CubeShaders)->Bind();
-		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_CubeShaders)->UploadUniformFloat3("u_Color", SquareColor);
-		Oasis::Renderer::Submit(m_CubeVertexArray, m_CubeShaders, transform);
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->Bind();
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->UploadUniformFloat3("u_Color", SquareColor);
+		m_Texture->Bind(0);
+		Oasis::Renderer::Submit(m_SquareVertexArray, m_SquareShaders, transform);
 
 		Oasis::Renderer::Submit(m_VertexArray, m_Shaders, glm::mat4(1.0f));
 
@@ -194,15 +207,17 @@ public:
 
 private:
 
-	std::shared_ptr<Oasis::Shader> m_Shaders;
-	std::shared_ptr<Oasis::VertexBuffer> m_VertexBuffer;
-	std::shared_ptr<Oasis::IndexBuffer> m_IndexBuffer;
-	std::shared_ptr<Oasis::VertexArray> m_VertexArray;
+	Oasis::Ref<Oasis::Shader> m_Shaders;
+	Oasis::Ref<Oasis::VertexBuffer> m_VertexBuffer;
+	Oasis::Ref<Oasis::IndexBuffer> m_IndexBuffer;
+	Oasis::Ref<Oasis::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Oasis::Shader> m_CubeShaders;
-	std::shared_ptr<Oasis::VertexBuffer> m_CubeVertexBuffer;
-	std::shared_ptr<Oasis::IndexBuffer> m_CubeIndexBuffer;
-	std::shared_ptr<Oasis::VertexArray> m_CubeVertexArray;
+	Oasis::Ref<Oasis::Shader> m_SquareShaders;
+	Oasis::Ref<Oasis::VertexBuffer> m_SquareVertexBuffer;
+	Oasis::Ref<Oasis::IndexBuffer> m_SquareIndexBuffer;
+	Oasis::Ref<Oasis::VertexArray> m_SquareVertexArray;
+
+	Oasis::Ref<Oasis::Texture2D> m_Texture;
 
 	glm::vec3 SquareColor = { 0.2f, 0.3f, 0.8f };
 

@@ -23,6 +23,8 @@
 #include "Oasis/Renderer/Shader.h"
 
 #include "Oasis/Renderer/OrthographicCamera.h"
+
+#include "Oasis/Renderer/Texture.h"
 // ---------------------------------
 
 // ---EntryPoint--------------------

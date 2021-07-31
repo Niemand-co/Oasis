@@ -39,14 +39,14 @@ namespace Oasis{
 
 	private:
 
-		std::unique_ptr<Window> m_Window;
+		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		bool OnWindowClose(WindowCloseEvent& e);
 		
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<TimeStep> timeStep;
+		Ref<TimeStep> timeStep;
 
 		static Application* s_Instance;
 

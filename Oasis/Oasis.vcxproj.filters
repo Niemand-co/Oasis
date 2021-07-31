@@ -7,6 +7,9 @@
     <Filter Include="src\Oasis">
       <UniqueIdentifier>{3BC688B3-A730-3D2A-F06E-EECF5C181B7F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Oasis\Core">
+      <UniqueIdentifier>{73070E93-5FD5-0199-4869-72BF34D6DDFD}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Oasis\Events">
       <UniqueIdentifier>{BFC1CF93-ABBA-EEE5-D4EC-D36AC044CEF1}</UniqueIdentifier>
     </Filter>
@@ -46,6 +49,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\OApch.h">
@@ -59,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="src\Oasis\Core.h">
       <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\TimeStep.h">
+      <Filter>src\Oasis\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Oasis\EntryPoint.h">
       <Filter>src\Oasis</Filter>
@@ -102,6 +111,9 @@
     <ClInclude Include="src\Oasis\Renderer\GraphicsContext.h">
       <Filter>src\Oasis\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\OrthographicCamera.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Oasis\Renderer\Renderer.h">
       <Filter>src\Oasis\Renderer</Filter>
     </ClInclude>
@@ -112,6 +124,9 @@
       <Filter>src\Oasis\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Oasis\Renderer\Shader.h">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Renderer\Texture.h">
       <Filter>src\Oasis\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Oasis\Renderer\VertexArray.h">
@@ -127,6 +142,15 @@
       <Filter>src\platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLShader.h">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLTimeStep.h">
       <Filter>src\platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\OpenGL\OpenGLVertexArray.h">
@@ -1383,10 +1407,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Oasis\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\Oasis\Core\TimeStep.h" />
-    <ClInclude Include="src\platform\OpenGL\OpenGLTimeStep.h" />
-    <ClInclude Include="src\platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp">
@@ -1394,6 +1417,9 @@
     </ClCompile>
     <ClCompile Include="src\Oasis\Application.cpp">
       <Filter>src\Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Core\TimeStep.cpp">
+      <Filter>src\Oasis\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\ImGui\ImGuiBuild.cpp">
       <Filter>src\Oasis\ImGui</Filter>
@@ -1413,6 +1439,9 @@
     <ClCompile Include="src\Oasis\Renderer\Buffer.cpp">
       <Filter>src\Oasis\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Oasis\Renderer\Renderer.cpp">
       <Filter>src\Oasis\Renderer</Filter>
     </ClCompile>
@@ -1423,6 +1452,9 @@
       <Filter>src\Oasis\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\Renderer\Shader.cpp">
+      <Filter>src\Oasis\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Renderer\Texture.cpp">
       <Filter>src\Oasis\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\Renderer\VertexArray.cpp">
@@ -1437,6 +1469,15 @@
     <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>src\platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLTimeStep.cpp">
+      <Filter>src\platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\platform\OpenGL</Filter>
     </ClCompile>
@@ -1446,9 +1487,8 @@
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp">
       <Filter>src\platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Oasis\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\platform\OpenGL\OpenGLTimeStep.cpp" />
-    <ClCompile Include="src\Oasis\Core\TimeStep.cpp" />
-    <ClCompile Include="src\platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

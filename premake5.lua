@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Oasis/vendor/GLFW/include"
 IncludeDir["Glad"] = "Oasis/vendor/Glad/include"
 IncludeDir["ImGui"] = "Oasis/vendor/imgui"
 IncludeDir["glm"] = "Oasis/vendor/glm"
+IncludeDir["stb_image"] = "Oasis/vendor/stb_image"
 
 include "Oasis/vendor/GLFW"
 include "Oasis/vendor/Glad"
@@ -25,7 +26,7 @@ include "Oasis/vendor/imgui"
 
 project "Oasis"
 	location "Oasis"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "c++"
 
 	targetdir ( "bin/" ..outputdir.. "/%{prj.name}")
@@ -37,8 +38,10 @@ project "Oasis"
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs{
@@ -47,7 +50,8 @@ project "Oasis"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links{
@@ -59,7 +63,7 @@ project "Oasis"
 
 	filter "system:windows"
 		cppdialect "c++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines{
