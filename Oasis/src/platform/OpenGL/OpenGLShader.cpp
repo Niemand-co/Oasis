@@ -2,10 +2,25 @@
 #include "OpenGLShader.h"
 #include "Oasis/Log.h"
 
+#include <fstream>
+
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 namespace Oasis {
+
+	GLenum StringToShaderType(std::string type) {
+
+		if (type == "Vertex")
+			return GL_VERTEX_SHADER;
+		else if (type == "Fragment")
+			return GL_FRAGMENT_SHADER;
+		else if (type == "Geometry")
+			return GL_GEOMETRY_SHADER;
+
+		OASIS_CORE_ASSERT(false, "Unknown Shader Tpye!");
+		return 0;
+
+	}
 
 	int OpenGLShader::GetLocation(uint32_t program, std::string name) {
 
@@ -17,60 +32,92 @@ namespace Oasis {
 
 	}
 
-	OpenGLShader::OpenGLShader(std::string& VertexShaderSrc, std::string& FragmentShaderSrc) {
+	std::string OpenGLShader::ReadFile(std::string filePath)
+	{
+		std::string shaderSrc;
+		std::ifstream in(filePath, std::ios::in, std::ios::binary);
+		if (in) {
 
-		std::string vShaderSource = VertexShaderSrc;
-		std::string fShaderSource = FragmentShaderSrc;
+			in.seekg(0, std::ios::end);
+			shaderSrc.resize(in.tellg());
+			in.seekg(0, std::ios::beg);
+			in.read(&shaderSrc[0], shaderSrc.size());
+			in.close();
 
-		GLuint VertexShader = glCreateShader(GL_VERTEX_SHADER);
-		GLuint FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		}
+		else {
 
-		const GLchar* vSource = (const GLchar*)vShaderSource.c_str();
-		const GLchar* fSource = (const GLchar*)fShaderSource.c_str();
+			OASIS_CORE_ASSERT(false, "Unable to Read Shaders !");
 
-		glShaderSource(VertexShader, 1, &vSource, 0);
-		glShaderSource(FragmentShader, 1, &fSource, 0);
-
-		glCompileShader(VertexShader);
-		glCompileShader(FragmentShader);
-
-		GLint IsCompiled = 0;
-		glGetShaderiv(VertexShader, GL_COMPILE_STATUS, &IsCompiled);
-		if (IsCompiled == GL_FALSE) {
-
-			GLint maxLength = 0;
-			glGetShaderiv(VertexShader, GL_INFO_LOG_LENGTH, &maxLength);
-
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(VertexShader, maxLength, &maxLength, &infoLog[0]);
-
-			glDeleteShader(VertexShader);
-
-			OASIS_CORE_ERROR("VertexShader Compilation Error: {0}", infoLog.data());
-			OASIS_CORE_ASSERT(false, "Compilation Failed!");
-			return;
 		}
 
-		IsCompiled = 0;
-		glGetShaderiv(FragmentShader, GL_COMPILE_STATUS, &IsCompiled);
-		if (IsCompiled == GL_FALSE) {
+		return shaderSrc;
+	}
 
-			GLint maxLength = 0;
-			glGetShaderiv(FragmentShader, GL_INFO_LOG_LENGTH, &maxLength);
+	std::unordered_map<GLenum, std::string> OpenGLShader::ShaderPreprocess(const std::string& ShaderSrc){
 
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(FragmentShader, maxLength, &maxLength, &infoLog[0]);
+		std::unordered_map<GLenum, std::string> Shaders;
 
-			glDeleteShader(FragmentShader);
+		const char* TypeToken = "#type";
+		size_t TypeTokenLength = std::strlen(TypeToken);
+		size_t pos = ShaderSrc.find(TypeToken, 0);
 
-			OASIS_CORE_ERROR("FragmentShader Compilation Error: {0}", infoLog.data());
-			OASIS_CORE_ASSERT(false, "Compilation Failed!");
-			return;
+		while (pos != std::string::npos) {
+
+			size_t eol = ShaderSrc.find_first_of("\r\n", pos);
+			OASIS_CORE_ASSERT(eol != std::string::npos, "Syntax Error");
+			size_t begin = pos + TypeTokenLength + 1;
+			std::string type = ShaderSrc.substr(begin, eol - begin);
+			
+			size_t nextlinePos = ShaderSrc.find_first_of("\r\n", eol);
+			pos = ShaderSrc.find(TypeToken, nextlinePos);
+
+			Shaders[StringToShaderType(type)] = ShaderSrc.substr(nextlinePos, pos - (nextlinePos == std::string::npos ? ShaderSrc.size() - 1 : nextlinePos));
+
 		}
+
+		return Shaders;
+
+	}
+
+	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& Shaders){
 
 		m_RendererID = glCreateProgram();
-		glAttachShader(m_RendererID, VertexShader);
-		glAttachShader(m_RendererID, FragmentShader);
+
+		std::vector<GLuint> glShaders(Shaders.size());
+
+		for (auto key : Shaders) {
+
+			GLenum shaderType = key.first;
+			const std::string source = key.second;
+
+			GLuint shader = glCreateShader(shaderType);
+			const GLchar* shaderSource = (const GLchar*)source.c_str();
+
+			glShaderSource(shader, 1, &shaderSource, 0);
+			glCompileShader(shader);
+
+			GLint IsCompiled = 0;
+			glGetShaderiv(shader, GL_COMPILE_STATUS, &IsCompiled);
+			if (IsCompiled == GL_FALSE) {
+
+				GLint maxLength = 0;
+				glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
+
+				std::vector<GLchar> infoLog(maxLength);
+				glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+
+				glDeleteShader(shader);
+
+				OASIS_CORE_ERROR("Shader Compilation Error: {0}", infoLog.data());
+				OASIS_CORE_ASSERT(false, "Compilation Failed!");
+				return;
+			}
+
+			glAttachShader(m_RendererID, shader);
+			glShaders.push_back(shader);
+
+		}
 
 		glLinkProgram(m_RendererID);
 		GLint IsLinked = 0;
@@ -83,14 +130,37 @@ namespace Oasis {
 			std::vector<GLchar> infoLog(maxLength);
 			glGetProgramInfoLog(m_RendererID, maxLength, &maxLength, &infoLog[0]);
 
+			glDeleteProgram(m_RendererID);
+			for (auto s : glShaders) {
+				glDeleteShader(s);
+			}
+
 			OASIS_CORE_ERROR("Shader Program Link Error: {0}", infoLog.data());
 			OASIS_CORE_ASSERT(false, "Link Failed!");
 			return;
 
 		}
 
-		glDeleteShader(VertexShader);
-		glDeleteShader(FragmentShader);
+		for (auto s : glShaders) {
+			glDeleteShader(s);
+		}
+
+	}
+
+	OpenGLShader::OpenGLShader(const std::string& VertexShaderSrc, const std::string& FragmentShaderSrc) {
+
+		std::unordered_map<GLenum, std::string> sources;
+		sources[GL_VERTEX_SHADER] = VertexShaderSrc;
+		sources[GL_FRAGMENT_SHADER] = FragmentShaderSrc;
+		Compile(sources);
+
+	}
+
+	OpenGLShader::OpenGLShader(const std::string& filePath){
+
+		std::string ShaderSrc = ReadFile(filePath);
+		auto Shaders = ShaderPreprocess(ShaderSrc);
+		Compile(Shaders);
 
 	}
 

@@ -33,36 +33,6 @@ public:
 			}
 
 			)";
-
-	std::string SquareVertexShaderSrc = R"(#version 330 core
-			layout (location = 0) in vec3 aPos;
-			layout (location = 1) in vec2 aTexCoord;
-			out vec2 v_TexCoord;
-
-			uniform mat4 viewProjection;
-			uniform mat4 model;
-
-			void main(){
-				v_TexCoord = aTexCoord;
-				gl_Position = viewProjection * model * vec4(aPos, 1.0);
-			}
-			)";
-
-	std::string SquareFragmentShaderSrc = R"(
-			#version 330 core
-			out vec4 FragColor;
-			uniform vec3 u_Color;
-			uniform sampler2D tex;
-
-			in vec2 v_TexCoord;
-
-			void main(){
-				FragColor = vec4(texture(tex, v_TexCoord).rgb, 1.0);
-				//FragColor = vec4(u_Color, 1.0);
-				//FragColor = vec4(0.2, 0.3, 0.8, 1.0);
-			}
-
-			)";
 	
 	ExampleLayer() : Layer("Example"), camera(-1.6f, 1.6f, 0.9f, -0.9f), m_CameraPosition(glm::vec3(0.0f)), m_CameraRotation(0.0f), m_Position(glm::vec3(0.0f)){
 	
@@ -122,10 +92,11 @@ public:
 		m_SquareVertexArray->SetIndexBuffer(m_SquareIndexBuffer);
 
 		// -----------------------------------
-		m_SquareShaders.reset(Oasis::Shader::Create(SquareVertexShaderSrc, SquareFragmentShaderSrc));
+		m_SquareShaders.reset(Oasis::Shader::Create("assets/shaders/SquareShader.glsl"));
 		m_Shaders.reset(Oasis::Shader::Create(VertexShaderSrc, FragmentShaderSrc));
 
-		m_Texture = Oasis::Texture2D::Create("assets/textures/wood.png");
+		m_Texture = Oasis::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_LogoTexture = Oasis::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->Bind();
 		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->UploadUniformInt("tex", 0);
@@ -172,10 +143,13 @@ public:
 
 		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->Bind();
 		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->UploadUniformFloat3("u_Color", SquareColor);
-		m_Texture->Bind(0);
+
+		m_Texture->Bind();
+		Oasis::Renderer::Submit(m_SquareVertexArray, m_SquareShaders, glm::mat4(1.0f));
+		m_LogoTexture->Bind();
 		Oasis::Renderer::Submit(m_SquareVertexArray, m_SquareShaders, transform);
 
-		Oasis::Renderer::Submit(m_VertexArray, m_Shaders, glm::mat4(1.0f));
+		//Oasis::Renderer::Submit(m_VertexArray, m_Shaders, glm::mat4(1.0f));
 
 		Oasis::Renderer::EndScene();
 
@@ -218,6 +192,7 @@ private:
 	Oasis::Ref<Oasis::VertexArray> m_SquareVertexArray;
 
 	Oasis::Ref<Oasis::Texture2D> m_Texture;
+	Oasis::Ref<Oasis::Texture2D> m_LogoTexture;
 
 	glm::vec3 SquareColor = { 0.2f, 0.3f, 0.8f };
 

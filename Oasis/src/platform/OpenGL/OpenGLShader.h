@@ -8,6 +8,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+typedef unsigned int GLenum;
+
 
 namespace Oasis {
 
@@ -15,7 +17,8 @@ namespace Oasis {
 
 	public:
 
-		OpenGLShader(std::string& VertexShaderPath, std::string& FragmentShaderPath);
+		OpenGLShader(const std::string& VertexShaderPath, const std::string& FragmentShaderPath);
+		OpenGLShader(const std::string& filePath);
 		~OpenGLShader();
 
 		virtual void Bind() const override;
@@ -32,6 +35,12 @@ namespace Oasis {
 		void UploadUniformMat4(const std::string&, const glm::mat4& value);
 
 		int GetLocation(uint32_t program, std::string name);
+
+	private:
+
+		std::string ReadFile(std::string);
+		std::unordered_map<GLenum, std::string> ShaderPreprocess(const std::string& ShaderSrc);
+		void Compile(const std::unordered_map<GLenum, std::string>&);
 
 	private:
 

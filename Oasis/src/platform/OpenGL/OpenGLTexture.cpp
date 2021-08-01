@@ -13,7 +13,6 @@ namespace Oasis {
 		OASIS_CORE_ASSERT(data, "Failed to load image!");
 		m_Width = width;
 		m_Height = height;
-		OASIS_INFO("There're {0} Channels", nrChannels);
 
 		GLenum internalFormat = 0, dataFormat = 0;
 		if (nrChannels == 1) {
@@ -28,6 +27,8 @@ namespace Oasis {
 			internalFormat = GL_RGBA8;
 			dataFormat = GL_RGBA;
 		}
+
+		OASIS_CORE_ASSERT(internalFormat & dataFormat, "Unsupported Format!");
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
 		glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);

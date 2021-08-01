@@ -13,7 +13,8 @@ namespace Oasis {
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
-		static Shader* Create(std::string& VertexShaderSrc, std::string& FragmentShaderSrc);
+		static Shader* Create(const std::string& VertexShaderSrc, const std::string& FragmentShaderSrc);
+		static Shader* Create(const std::string& filePath);
 
 	};
 
