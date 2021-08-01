@@ -125,7 +125,7 @@ public:
 		m_SquareShaders.reset(Oasis::Shader::Create(SquareVertexShaderSrc, SquareFragmentShaderSrc));
 		m_Shaders.reset(Oasis::Shader::Create(VertexShaderSrc, FragmentShaderSrc));
 
-		m_Texture = Oasis::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_Texture = Oasis::Texture2D::Create("assets/textures/wood.png");
 
 		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->Bind();
 		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->UploadUniformInt("tex", 0);
