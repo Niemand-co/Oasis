@@ -92,14 +92,14 @@ public:
 		m_SquareVertexArray->SetIndexBuffer(m_SquareIndexBuffer);
 
 		// -----------------------------------
-		m_SquareShaders.reset(Oasis::Shader::Create("assets/shaders/SquareShader.glsl"));
-		m_Shaders.reset(Oasis::Shader::Create(VertexShaderSrc, FragmentShaderSrc));
+		auto SquareShader = m_Shaders.LoadShader("assets/shaders/SquareShader.glsl");
+		m_Shader = Oasis::Shader::Create("normalShader", VertexShaderSrc, FragmentShaderSrc);
 
 		m_Texture = Oasis::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = Oasis::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->Bind();
-		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->UploadUniformInt("tex", 0);
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(SquareShader)->Bind();
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(SquareShader)->UploadUniformInt("tex", 0);
 
 	}
 	
@@ -141,15 +141,17 @@ public:
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_Position);
 
-		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->Bind();
-		std::dynamic_pointer_cast<Oasis::OpenGLShader>(m_SquareShaders)->UploadUniformFloat3("u_Color", SquareColor);
+		auto SquareShader = m_Shaders.GetShader("SquareShader");
+
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(SquareShader)->Bind();
+		std::dynamic_pointer_cast<Oasis::OpenGLShader>(SquareShader)->UploadUniformFloat3("u_Color", SquareColor);
 
 		m_Texture->Bind();
-		Oasis::Renderer::Submit(m_SquareVertexArray, m_SquareShaders, glm::mat4(1.0f));
+		Oasis::Renderer::Submit(m_SquareVertexArray, SquareShader, glm::mat4(1.0f));
 		m_LogoTexture->Bind();
-		Oasis::Renderer::Submit(m_SquareVertexArray, m_SquareShaders, transform);
+		Oasis::Renderer::Submit(m_SquareVertexArray, SquareShader, transform);
 
-		//Oasis::Renderer::Submit(m_VertexArray, m_Shaders, glm::mat4(1.0f));
+		//Oasis::Renderer::Submit(m_VertexArray, m_Shader, glm::mat4(1.0f));
 
 		Oasis::Renderer::EndScene();
 
@@ -181,12 +183,12 @@ public:
 
 private:
 
-	Oasis::Ref<Oasis::Shader> m_Shaders;
+	Oasis::ShaderLibrary m_Shaders;
+	Oasis::Ref<Oasis::Shader> m_Shader;
 	Oasis::Ref<Oasis::VertexBuffer> m_VertexBuffer;
 	Oasis::Ref<Oasis::IndexBuffer> m_IndexBuffer;
 	Oasis::Ref<Oasis::VertexArray> m_VertexArray;
 
-	Oasis::Ref<Oasis::Shader> m_SquareShaders;
 	Oasis::Ref<Oasis::VertexBuffer> m_SquareVertexBuffer;
 	Oasis::Ref<Oasis::IndexBuffer> m_SquareIndexBuffer;
 	Oasis::Ref<Oasis::VertexArray> m_SquareVertexArray;

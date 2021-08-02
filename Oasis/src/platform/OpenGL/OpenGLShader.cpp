@@ -35,7 +35,7 @@ namespace Oasis {
 	std::string OpenGLShader::ReadFile(std::string filePath)
 	{
 		std::string shaderSrc;
-		std::ifstream in(filePath, std::ios::in, std::ios::binary);
+		std::ifstream in(filePath, std::ios::in | std::ios::binary);
 		if (in) {
 
 			in.seekg(0, std::ios::end);
@@ -84,7 +84,9 @@ namespace Oasis {
 
 		m_RendererID = glCreateProgram();
 
-		std::vector<GLuint> glShaders(Shaders.size());
+		OASIS_CORE_ASSERT(Shaders.size() <= 2, "Only support 2 shaders!");
+		std::array<GLuint, 2> glShaders;
+		int glShaderPtr = 0;
 
 		for (auto key : Shaders) {
 
@@ -115,7 +117,7 @@ namespace Oasis {
 			}
 
 			glAttachShader(m_RendererID, shader);
-			glShaders.push_back(shader);
+			glShaders[glShaderPtr++] = shader;
 
 		}
 
@@ -147,7 +149,7 @@ namespace Oasis {
 
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& VertexShaderSrc, const std::string& FragmentShaderSrc) {
+	OpenGLShader::OpenGLShader(const std::string name, const std::string& VertexShaderSrc, const std::string& FragmentShaderSrc) : m_Name(name){
 
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = VertexShaderSrc;
@@ -161,6 +163,13 @@ namespace Oasis {
 		std::string ShaderSrc = ReadFile(filePath);
 		auto Shaders = ShaderPreprocess(ShaderSrc);
 		Compile(Shaders);
+
+		auto begin = filePath.find_last_of("/\\");
+		begin = begin == std::string::npos ? 0 : begin + 1;
+		auto end = filePath.rfind('.');
+		size_t cnt = end == std::string::npos ? filePath.size() - begin : end - begin;
+
+		m_Name = filePath.substr(begin, cnt);
 
 	}
 
