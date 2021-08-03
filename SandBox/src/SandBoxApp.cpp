@@ -34,7 +34,7 @@ public:
 
 			)";
 	
-	ExampleLayer() : Layer("Example"), camera(-1.6f, 1.6f, 0.9f, -0.9f), m_CameraPosition(glm::vec3(0.0f)), m_CameraRotation(0.0f), m_Position(glm::vec3(0.0f)){
+	ExampleLayer() : Layer("Example"), m_CameraController(16.0f / 9.0f, true){
 	
 		// ---Triangle-----------------------------
 		m_VertexArray.reset(Oasis::VertexArray::Create());
@@ -105,39 +105,26 @@ public:
 	
 	void OnUpdate(std::shared_ptr<Oasis::TimeStep> timeStep, float DeltaTime) override {
 
-		if (Oasis::Input::IsKeyPressed(OASIS_KEY_LEFT)) {
-			m_CameraPosition.x -= m_CameraSpeed * DeltaTime;
-		}
-		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_RIGHT)) {
-			m_CameraPosition.x += m_CameraSpeed * DeltaTime;
-		}
-		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_DOWN)) {
-			m_CameraPosition.y -= m_CameraSpeed * DeltaTime;
-		}
-		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_UP)) {
-			m_CameraPosition.y += m_CameraSpeed * DeltaTime;
-		}
+		m_CameraController.OnUpdate(DeltaTime);
 
-		if (Oasis::Input::IsKeyPressed(OASIS_KEY_W)) {
-			m_Position.y += m_CameraSpeed * DeltaTime;
-		}
-		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_A)) {
-			m_Position.x -= m_CameraSpeed * DeltaTime;
-		}
-		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_S)) {
-			m_Position.y -= m_CameraSpeed * DeltaTime;
+		if (Oasis::Input::IsKeyPressed(OASIS_KEY_A)) {
+			m_Position.x -= m_StuffTranslationSpeed * DeltaTime;
 		}
 		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_D)) {
-			m_Position.x += m_CameraSpeed * DeltaTime;
+			m_Position.x += m_StuffTranslationSpeed * DeltaTime;
+		}
+		
+		if (Oasis::Input::IsKeyPressed(OASIS_KEY_W)) {
+			m_Position.y += m_StuffTranslationSpeed * DeltaTime;
+		}
+		else if (Oasis::Input::IsKeyPressed(OASIS_KEY_S)) {
+			m_Position.y -= m_StuffTranslationSpeed * DeltaTime;
 		}
 
 		Oasis::RendererCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 0.2f));
 		Oasis::RendererCommand::Clear();
 
-		Oasis::Renderer::BeginScene(camera);
-
-		camera.SetPosition(m_CameraPosition);
-		camera.SetRotation(m_CameraRotation);
+		Oasis::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_Position);
 
@@ -167,8 +154,7 @@ public:
 
 	void OnEvent(Oasis::Event& e) override {
 
-		Oasis::EventDispatcher dispatcher(e);
-		dispatcher.DispatchEvent<Oasis::KeyPressedEvent>(std::bind(&ExampleLayer::OnKeyPressed, this, std::placeholders::_1));
+		m_CameraController.OnEvent(e);
 
 	}
 
@@ -198,12 +184,11 @@ private:
 
 	glm::vec3 SquareColor = { 0.2f, 0.3f, 0.8f };
 
-	Oasis::OrthographicCamera camera;
+	Oasis::OrthographicCameraController m_CameraController;
 
-	glm::vec3 m_CameraPosition;
-	glm::vec3 m_Position;
-	float m_CameraRotation;
-	float m_CameraSpeed = 1.0f;
+	glm::vec3 m_Position = { 0.0f, 0.0f, 0.0f };
+	float m_StuffTranslationSpeed = 1.0f;
+	
 };
 
 

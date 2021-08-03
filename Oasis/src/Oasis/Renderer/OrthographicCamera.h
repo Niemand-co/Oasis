@@ -10,6 +10,7 @@ namespace Oasis {
 	public:
 
 		OrthographicCamera(float left, float right, float up, float bottom);
+		void ProjectionMatrixUpdate(float left, float right, float up, float bottom);
 
 		const glm::vec3 GetPosition() const { return m_Position; }
 		void SetPosition(glm::vec3& position) { m_Position = position; ViewMatrixUpdate(); }
