@@ -60,17 +60,8 @@
     <ClInclude Include="src\Oasis.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Oasis\Application.h">
-      <Filter>src\Oasis</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\Core.h">
-      <Filter>src\Oasis</Filter>
-    </ClInclude>
     <ClInclude Include="src\Oasis\Core\TimeStep.h">
       <Filter>src\Oasis\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\EntryPoint.h">
-      <Filter>src\Oasis</Filter>
     </ClInclude>
     <ClInclude Include="src\Oasis\Events\ApplicationEvent.h">
       <Filter>src\Oasis\Events</Filter>
@@ -87,22 +78,7 @@
     <ClInclude Include="src\Oasis\ImGui\ImGuiLayer.h">
       <Filter>src\Oasis\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Oasis\Input.h">
-      <Filter>src\Oasis</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\KeyCodes.h">
-      <Filter>src\Oasis</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\Layer.h">
-      <Filter>src\Oasis</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\LayerStack.h">
-      <Filter>src\Oasis</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\Log.h">
-      <Filter>src\Oasis</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\MouseButtons.h">
+    <ClInclude Include="src\Oasis\OrthographicCameraController.h">
       <Filter>src\Oasis</Filter>
     </ClInclude>
     <ClInclude Include="src\Oasis\Renderer\Buffer.h">
@@ -131,9 +107,6 @@
     </ClInclude>
     <ClInclude Include="src\Oasis\Renderer\VertexArray.h">
       <Filter>src\Oasis\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Oasis\Window.h">
-      <Filter>src\Oasis</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\platform\OpenGL</Filter>
@@ -1410,14 +1383,40 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Oasis\OrthographicCameraController.h" />
+    <ClInclude Include="src\Oasis\Core\Window.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\MouseButtons.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\Log.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\LayerStack.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\Layer.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\KeyCodes.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\Input.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\EntryPoint.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\Core.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Oasis\Core\Application.h">
+      <Filter>src\Oasis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OApch.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Oasis\Application.cpp">
-      <Filter>src\Oasis</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\Core\TimeStep.cpp">
       <Filter>src\Oasis\Core</Filter>
@@ -1428,13 +1427,7 @@
     <ClCompile Include="src\Oasis\ImGui\ImGuiLayer.cpp">
       <Filter>src\Oasis\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Oasis\Layer.cpp">
-      <Filter>src\Oasis</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Oasis\LayerStack.cpp">
-      <Filter>src\Oasis</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Oasis\Log.cpp">
+    <ClCompile Include="src\Oasis\OrthographicCameraController.cpp">
       <Filter>src\Oasis</Filter>
     </ClCompile>
     <ClCompile Include="src\Oasis\Renderer\Buffer.cpp">
@@ -1491,6 +1484,17 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Oasis\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\Oasis\Core\Log.cpp">
+      <Filter>src\Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Core\LayerStack.cpp">
+      <Filter>src\Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Core\Layer.cpp">
+      <Filter>src\Oasis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Oasis\Core\Application.cpp">
+      <Filter>src\Oasis</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include "OApch.h"
 #include "WindowsInput.h"
 
-#include "Oasis/Application.h"
+#include "Oasis/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Oasis {

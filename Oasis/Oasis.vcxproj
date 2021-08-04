@@ -154,21 +154,21 @@
   <ItemGroup>
     <ClInclude Include="src\OApch.h" />
     <ClInclude Include="src\Oasis.h" />
-    <ClInclude Include="src\Oasis\Application.h" />
-    <ClInclude Include="src\Oasis\Core.h" />
+    <ClInclude Include="src\Oasis\Core\Application.h" />
+    <ClInclude Include="src\Oasis\Core\Core.h" />
     <ClInclude Include="src\Oasis\Core\TimeStep.h" />
-    <ClInclude Include="src\Oasis\EntryPoint.h" />
+    <ClInclude Include="src\Oasis\Core\EntryPoint.h" />
     <ClInclude Include="src\Oasis\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Oasis\Events\Event.h" />
     <ClInclude Include="src\Oasis\Events\MouseEvent.h" />
     <ClInclude Include="src\Oasis\Events\keyEvent.h" />
     <ClInclude Include="src\Oasis\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Oasis\Input.h" />
-    <ClInclude Include="src\Oasis\KeyCodes.h" />
-    <ClInclude Include="src\Oasis\Layer.h" />
-    <ClInclude Include="src\Oasis\LayerStack.h" />
-    <ClInclude Include="src\Oasis\Log.h" />
-    <ClInclude Include="src\Oasis\MouseButtons.h" />
+    <ClInclude Include="src\Oasis\Core\Input.h" />
+    <ClInclude Include="src\Oasis\Core\KeyCodes.h" />
+    <ClInclude Include="src\Oasis\Core\Layer.h" />
+    <ClInclude Include="src\Oasis\Core\LayerStack.h" />
+    <ClInclude Include="src\Oasis\Core\Log.h" />
+    <ClInclude Include="src\Oasis\Core\MouseButtons.h" />
     <ClInclude Include="src\Oasis\OrthographicCameraController.h" />
     <ClInclude Include="src\Oasis\Renderer\Buffer.h" />
     <ClInclude Include="src\Oasis\Renderer\GraphicsContext.h" />
@@ -179,7 +179,7 @@
     <ClInclude Include="src\Oasis\Renderer\Shader.h" />
     <ClInclude Include="src\Oasis\Renderer\Texture.h" />
     <ClInclude Include="src\Oasis\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Oasis\Window.h" />
+    <ClInclude Include="src\Oasis\Core\Window.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h" />
@@ -610,13 +610,13 @@
     <ClCompile Include="src\OApch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Oasis\Application.cpp" />
+    <ClCompile Include="src\Oasis\Core\Application.cpp" />
     <ClCompile Include="src\Oasis\Core\TimeStep.cpp" />
     <ClCompile Include="src\Oasis\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Oasis\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Oasis\Layer.cpp" />
-    <ClCompile Include="src\Oasis\LayerStack.cpp" />
-    <ClCompile Include="src\Oasis\Log.cpp" />
+    <ClCompile Include="src\Oasis\Core\Layer.cpp" />
+    <ClCompile Include="src\Oasis\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Oasis\Core\Log.cpp" />
     <ClCompile Include="src\Oasis\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Oasis\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Oasis\Renderer\OrthographicCamera.cpp" />

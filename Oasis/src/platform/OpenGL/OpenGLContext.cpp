@@ -1,7 +1,7 @@
 #include "OApch.h"
 #include "OpenGLContext.h"
-#include "Oasis/Core.h"
-#include "Oasis/Log.h"
+#include "Oasis/Core/Core.h"
+#include "Oasis/Core/Log.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

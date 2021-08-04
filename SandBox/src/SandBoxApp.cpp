@@ -4,6 +4,8 @@
 
 #include <memory>
 
+#include "SandBox2D.h"
+
 class ExampleLayer : public Oasis::Layer {
 
 public:
@@ -196,7 +198,8 @@ class SandBox : public Oasis::Application {
 
 public:
 	SandBox(){
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new SandBox2D());
 	}
 
 	~SandBox() {

@@ -1,7 +1,7 @@
 #pragma once
 #include "Oasis/Renderer/Shader.h"
 
-#include "Oasis/Core.h"
+#include "Oasis/Core/Core.h"
 #include <string>
 
 #include <glm/glm.hpp>

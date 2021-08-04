@@ -1,7 +1,7 @@
 #include "OApch.h"
 #include "Application.h"
 
-#include "Events/ApplicationEvent.h"
+#include "Oasis/Events/ApplicationEvent.h"
 #include "Log.h"
 
 #include "Oasis/Renderer/Renderer.h"
@@ -37,7 +37,8 @@ namespace Oasis {
 	void Application::OnEvent(Event& e) {
 
 		EventDispatcher dispatcher(e);
-		dispatcher.DispatchEvent<WindowCloseEvent>(std::bind(&Application::OnWindowClose, this, std::placeholders::_1));
+		dispatcher.DispatchEvent<WindowCloseEvent>(OASIS_BIND_EVENT_FUNC(Application::OnWindowClose));
+		dispatcher.DispatchEvent<WindowResizeEvent>(OASIS_BIND_EVENT_FUNC(Application::OnWindowResize));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
 
@@ -58,9 +59,10 @@ namespace Oasis {
 			
 			float DeltaTime = timeStep->UpdateTimeStep();
 
-
-			for (Layer* layer : m_LayerStack) {
-				layer->OnUpdate(timeStep, DeltaTime);
+			if(!m_Minimized){
+				for (Layer* layer : m_LayerStack) {
+					layer->OnUpdate(timeStep, DeltaTime);
+				}
 			}
 
 			m_ImGuiLayer->Begin();
@@ -69,7 +71,6 @@ namespace Oasis {
 			}
 			m_ImGuiLayer->End();
 
-
 			m_Window->OnUpdate();
 		}
 	}
@@ -77,6 +78,22 @@ namespace Oasis {
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		uint32_t width = e.GetWindowWidth(), height = e.GetWindowHeight();
+		if (width == 0 || height == 0) {
+
+			m_Minimized = true;
+			return false;
+
+		}
+
+		Renderer::ViewportUpdateWithWindow(width, height);
+
+		m_Minimized = false;
+		return false;
 	}
 
 }

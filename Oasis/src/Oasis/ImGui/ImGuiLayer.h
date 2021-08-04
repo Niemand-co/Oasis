@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Oasis/Layer.h"
+#include "Oasis/Core/Layer.h"
 
 #include "Oasis/Events/ApplicationEvent.h"
 #include "Oasis/Events/KeyEvent.h"

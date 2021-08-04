@@ -2,7 +2,7 @@
 
 #include "Core.h"
 #include "Oasis/Core/TimeStep.h"
-#include "Events/Event.h"
+#include "Oasis/Events/Event.h"
 
 namespace Oasis {
 

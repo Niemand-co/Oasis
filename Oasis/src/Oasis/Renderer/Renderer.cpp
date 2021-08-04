@@ -12,6 +12,12 @@ namespace Oasis {
 
 	}
 
+	void Renderer::ViewportUpdateWithWindow(uint32_t width, uint32_t height){
+
+		RendererCommand::SetViewport(0, 0, width, height);
+
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera){
 
 		m_SceneData->ProjectionViewMatrix = camera.GetProjectionViewMatrix();

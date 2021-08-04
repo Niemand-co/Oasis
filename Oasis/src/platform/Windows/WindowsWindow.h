@@ -1,8 +1,8 @@
 #pragma once
 
 #include "OApch.h"
-#include "Oasis/Window.h"
-#include "Oasis/Log.h"
+#include "Oasis/Core/Window.h"
+#include "Oasis/Core/Log.h"
 #include "Oasis/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

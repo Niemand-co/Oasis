@@ -1,6 +1,6 @@
 #include "OApch.h"
 #include "OpenGLShader.h"
-#include "Oasis/Log.h"
+#include "Oasis/Core/Log.h"
 
 #include <fstream>
 

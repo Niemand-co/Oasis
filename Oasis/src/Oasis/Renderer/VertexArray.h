@@ -1,5 +1,5 @@
 #pragma once
-#include "Oasis/Core.h"
+#include "Oasis/Core/Core.h"
 #include <memory>
 #include "Oasis/Renderer/Buffer.h"
 

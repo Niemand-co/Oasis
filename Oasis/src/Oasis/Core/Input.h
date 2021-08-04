@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Oasis/Core.h"
+#include "Oasis/Core/Core.h"
 
 namespace Oasis {
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "Oasis/Log.h"
+#include "Oasis/Core/Log.h"
 
-#include "Oasis/Core.h"
+#include "Oasis/Core/Core.h"
 #include <string>
 
 namespace Oasis {

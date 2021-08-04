@@ -1,10 +1,10 @@
 #include "OApch.h"
 #include "OrthographicCameraController.h"
 
-#include "Oasis/KeyCodes.h"
-#include "Oasis/MouseButtons.h"
+#include "Oasis/Core/KeyCodes.h"
+#include "Oasis/Core/MouseButtons.h"
 
-#include "Oasis/Input.h"
+#include "Oasis/Core/Input.h"
 
 namespace Oasis {
 

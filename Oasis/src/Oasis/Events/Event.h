@@ -1,7 +1,7 @@
 #pragma once
 
 #include "OApch.h"
-#include "Oasis/Core.h"
+#include "Oasis/Core/Core.h"
 
 namespace Oasis {
 

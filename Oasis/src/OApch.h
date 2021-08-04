@@ -12,6 +12,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <unordered_set>
+#include <functional>
 
 #ifdef OASIS_PLATFORM_WINDOWS
 	#include <Windows.h>

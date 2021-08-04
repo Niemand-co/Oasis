@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Oasis/Input.h"
+#include "Oasis/Core/Input.h"
 
 namespace Oasis {
 

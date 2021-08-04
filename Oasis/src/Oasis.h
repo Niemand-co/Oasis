@@ -2,16 +2,16 @@
 
 #include <stdio.h>
 
-#include "Oasis/Application.h"
-#include "Oasis/Layer.h"
-#include "Oasis/Input.h"
+#include "Oasis/Core/Application.h"
+#include "Oasis/Core/Layer.h"
+#include "Oasis/Core/Input.h"
 #include "Oasis/ImGui/ImGuiLayer.h"
-#include "Oasis/Log.h"
+#include "Oasis/Core/Log.h"
 
 #include "Oasis/Core/TimeStep.h"
 
-#include "Oasis/KeyCodes.h"
-#include "Oasis/MouseButtons.h"
+#include "Oasis/Core/KeyCodes.h"
+#include "Oasis/Core/MouseButtons.h"
 
 
 // ---Renderer----------------------
@@ -29,5 +29,5 @@
 // ---------------------------------
 
 // ---EntryPoint--------------------
-#include "Oasis/EntryPoint.h"
+#include "Oasis/Core/EntryPoint.h"
 // ---------------------------------
